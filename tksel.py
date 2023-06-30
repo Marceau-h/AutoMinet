@@ -60,7 +60,7 @@ def main(csv, output):
             s.cookies.set(cookie['name'], cookie['value'])
         # headers = driver.get_headers()
 
-        response = s.get(video, stream=True, headers=headers)
+        response = s.get(video, stream=True, headers=headers, allow_redirects=True, verify=False)
         # print(response.status_code)
         response.raise_for_status()
 
