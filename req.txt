@@ -1,0 +1,11 @@
+hatchling
+browser-cookie3
+beautifulsoup4
+numpy
+pandas
+requests
+selenium
+streamlit
+webdriver-manager
+tqdm
+pyktok
