@@ -1,6 +1,6 @@
 echo "$@"
 
-python3 -m pip install -r req.txt > /dev/null
+python3 -m pip install -r requirements.txt > /dev/null
 
 OUTPUT="$(python3 minetcookies.py "$@")"
 
