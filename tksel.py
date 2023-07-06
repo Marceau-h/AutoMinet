@@ -4,6 +4,8 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options as COptions
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 import requests
 
@@ -56,6 +58,7 @@ def main(
         options.add_argument("--headless=new")
 
     driver = webdriver.Chrome(options=options)
+    wait = WebDriverWait(driver, 30)
 
     for i in tqdm(id):
 
@@ -65,9 +68,15 @@ def main(
 
         sleep(1)
 
-        video = driver.find_element(
-            By.XPATH,
-            '/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/div/div/div/video'
+        # video = driver.find_element(
+        #     By.XPATH,
+        #     '/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/div/div/div/video'
+        # ).get_attribute("src")
+
+        video = wait.until(
+            EC.presence_of_element_located(
+                (By.XPATH, '/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/div/div/div/video')
+            )
         ).get_attribute("src")
 
         cookies = driver.get_cookies()

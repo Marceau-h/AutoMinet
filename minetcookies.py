@@ -106,8 +106,7 @@ def main(query: list):
 
     outp = Path(args[2])
 
-    print(outp.as_posix())
-
+    print(outp.expanduser().resolve().as_posix())
 
 
 
