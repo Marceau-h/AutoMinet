@@ -9,10 +9,11 @@ OUTPUT="$(python3 minetcookies.py "$@")"
 
 echo "Récupération des données..."
 minet "$@" > temp.csv
+# echo "$(<temp.csv)"
 
 if [ "$1" = "tiktok" ]; then
     echo "Récolte des vidéos..."
-    python3 tksel.py temp.csv "$3"
+    python3 tksel.py temp.csv "$3" --no-headless
     cp temp.csv "$OUTPUT"/meta.csv
 else
   echo "$(<temp.csv)"

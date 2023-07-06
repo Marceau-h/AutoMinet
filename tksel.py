@@ -1,4 +1,5 @@
 import sys
+from random import randint
 from time import sleep
 
 from selenium import webdriver
@@ -15,6 +16,9 @@ from pathlib import Path
 
 from tqdm.auto import tqdm
 import warnings
+
+def dodo(a: int=20, b: int=40):
+    sleep(randint(a, b))
 
 
 def do_request(session, url, headers):
@@ -36,6 +40,7 @@ def main(
 ):
     df = pd.read_csv(csv).fillna("")
     id = df["id"].tolist()
+    author = df["author_unique_id"].tolist()
 
 
     folder = Path(output)
@@ -58,20 +63,15 @@ def main(
         options.add_argument("--headless=new")
 
     driver = webdriver.Chrome(options=options)
-    wait = WebDriverWait(driver, 30)
+    wait = WebDriverWait(driver, 120)
 
-    for i in tqdm(id):
+    for i, auth in tqdm(zip(id, author), total=len(id)):
 
-        url = f"https://www.tiktok.com/@hugodecrypte/video/{i}"
+        url = f"https://www.tiktok.com/@{auth}/video/{i}"
 
         driver.get(url)
 
-        sleep(1)
-
-        # video = driver.find_element(
-        #     By.XPATH,
-        #     '/html/body/div[1]/div[2]/div[2]/div/div[2]/div/div[1]/div[1]/div[2]/div/div/div/video'
-        # ).get_attribute("src")
+        sleep(2)
 
         video = wait.until(
             EC.presence_of_element_located(
@@ -89,6 +89,11 @@ def main(
 
         with open(folder / f"{i}.mp4", mode='wb') as f:
             f.write(response.content)
+
+        dodo()
+
+    driver.quit()
+
 
 
 if __name__ == "__main__":
