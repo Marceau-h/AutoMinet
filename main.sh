@@ -13,7 +13,7 @@ minet "$@" > temp.csv
 
 if [ "$1" = "tiktok" ]; then
     echo "Récolte des vidéos..."
-    python3 tksel.py temp.csv "$3" --no-headless
+    python3 tksel.py temp.csv "$3"  # --no-headless
     cp temp.csv "$OUTPUT"/meta.csv
 else
   echo "$(<temp.csv)"
