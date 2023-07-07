@@ -15,6 +15,7 @@ if [ "$1" = "tiktok" ]; then
     echo "Récolte des vidéos..."
     python3 tksel.py temp.csv "$3"  # --no-headless
     cp temp.csv "$OUTPUT"/meta.csv
+    pellipop --input "$OUTPUT" --output "$OUTPUT"-pellipop --frequency 1 --remove_duplicates
 else
   echo "$(<temp.csv)"
 fi

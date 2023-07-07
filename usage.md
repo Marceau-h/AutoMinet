@@ -1,3 +1,3 @@
 ```bash
-./main.sh tiktok search-videos congolexicomatisation -l 100
+./main.sh tiktok search-videos test -l 25
 ```
