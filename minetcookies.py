@@ -47,8 +47,9 @@ def minettest():
     try:
         subprocess.run(["minet", "--version"], capture_output=True)
     except FileNotFoundError:
-        args = "curl -sSL https://raw.githubusercontent.com/medialab/minet/master/scripts/install.sh | bash".split(" ")
-        subprocess.run(args, capture_output=True)
+        raise RuntimeError("Minet n'est pas installé")
+        # args = "curl -sSL https://raw.githubusercontent.com/medialab/minet/master/scripts/install.sh | bash".split(" ")
+        # subprocess.run(args, capture_output=True)
 
 def get(media:str, key:str):
     return config[media][key]
