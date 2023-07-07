@@ -60,8 +60,12 @@ def save():
     configfile.write_text(yaml.dump(config))
 
 def recover_cookies(media:str):
-    cookie = subprocess.run(["minet", "cookies", "chrome", "--url", f"https://www.{media}.com"], capture_output=True)
-    cookie = cookie.stdout.decode("utf-8").strip()
+    for navigator in ['chrome', 'firefox', 'chromium', 'edge']:
+        cookie = subprocess.run(["minet", "cookies", navigator, "--url", f"https://www.{media}.com"], capture_output=True)
+        cookie = cookie.stdout.decode("utf-8").strip()
+        if cookie != "":
+            break
+
 
     set(media, "cookie", cookie)
     save()
