@@ -8,7 +8,7 @@ OUTPUT="$(python3 minetcookies.py "$@")" || exit_on_error
 # echo "$OUTPUT"
 
 echo "Récupération des données..."
-minet "$@" > temp.csv
+minet "$@" -o temp.csv
 # echo "$(<temp.csv)"
 
 if [ "$1" = "tiktok" ]; then
