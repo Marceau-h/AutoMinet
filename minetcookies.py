@@ -61,11 +61,15 @@ def save():
     configfile.write_text(yaml.dump(config))
 
 def recover_cookies(media:str):
-    for navigator in ['chrome', 'firefox', 'chromium', 'edge']:
+    bros = ['chrome', 'firefox', 'chromium', 'edge']
+    for navigator in bros:
         cookie = subprocess.run(["minet", "cookies", navigator, "--url", f"https://www.{media}.com"], capture_output=True)
         cookie = cookie.stdout.decode("utf-8").strip()
         if cookie != "":
             break
+    else:
+        raise RuntimeError(f"Aucun cookie trouvé pour {media} veillez à vous connecter sur https://www.{media}.com puis réessayez.\n(Navigateurs supportés : {bros})")
+  
 
 
     set(media, "cookie", cookie)
