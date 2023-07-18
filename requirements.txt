@@ -13,3 +13,4 @@ pellipop
 minet~=0.67.1
 
 minetcookies
+tksel

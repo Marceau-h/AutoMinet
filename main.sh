@@ -13,7 +13,7 @@ minet "$@" -o temp.csv || exit
 
 if [ "$1" = "tiktok" ]; then
     echo "Récolte des vidéos..."
-    python3 tksel.py temp.csv "$3" || exit  # --no-headless
+    tksel temp.csv "$3" || exit  # --no-headless
     cp temp.csv "$OUTPUT"/meta.csv || exit
     pellipop --input "$OUTPUT" --output "$OUTPUT"-pellipop --frequency 1 --remove_duplicates || exit
 else

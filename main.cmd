@@ -4,7 +4,7 @@ python -m pip install --upgrade pip > nul || goto :exit_on_error
 python -m pip install -r requirements.txt > nul || goto :exit_on_error
 
 echo Vérification des cookies...
-for /f "usebackq delims=" %%I in (`python minetcookies.py %*`) do set OUTPUT=%%I || goto :exit_on_error
+for /f "usebackq delims=" %%I in (`minetcookies %*`) do set OUTPUT=%%I || goto :exit_on_error
 REM echo %OUTPUT%
 
 echo Récupération des données...
@@ -13,7 +13,7 @@ minet %* -o temp.csv
 
 if "%~1"=="tiktok" (
     echo Récolte des vidéos...
-    python tksel.py temp.csv %3 || goto :exit_on_error  REM --no-headless
+    tksel temp.csv %3 || goto :exit_on_error  REM --no-headless
     echo "on tente de copier"
     copy temp.csv "%OUTPUT:~0,-1%/meta.csv" || goto :exit_on_error
     echo "découpe dans pellipop"
