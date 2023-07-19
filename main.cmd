@@ -14,8 +14,8 @@ minet %* -o temp.csv
 if "%~1"=="tiktok" (
     echo Récolte des vidéos...
     tksel temp.csv %3 || goto :exit_on_error  REM --no-headless
-    echo "on tente de copier"
-    copy temp.csv "%OUTPUT:~0,-1%/meta.csv" || goto :exit_on_error
+    REM echo "on tente de copier"
+    REM copy temp.csv "%OUTPUT:~0,-1%/meta.csv" || goto :exit_on_error
     echo "découpe dans pellipop"
     pellipop --input "%OUTPUT:~0,-1%" --frequency 1 --remove_duplicates || goto :exit_on_error
 ) else (

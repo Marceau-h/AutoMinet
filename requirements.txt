@@ -1,16 +1,3 @@
-hatchling
-browser-cookie3
-beautifulsoup4
-numpy
-pandas~=2.0.3
-requests~=2.31.0
-selenium~=4.10.0
-streamlit
-webdriver-manager
-tqdm~=4.65.0
-pyktok~=0.0.16
-pellipop
-minet~=0.67.1
-
 minetcookies
 tksel
+pellipop @git+https://github.com/CERES-Sorbonne/Pellipop.git
