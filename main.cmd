@@ -1,7 +1,12 @@
 @echo off
-echo Installation des dépendances...
-python -m pip install --upgrade pip > nul || goto :exit_on_error
-python -m pip install -r requirements.txt > nul || goto :exit_on_error
+rem Activation de l'environnement virtuel
+echo Activation de l'environnement virtuel...
+call venv\Scripts\activate
+if %errorlevel% neq 0 (
+    echo Erreur lors de l'activation de l'environnement virtuel.
+    exit /b 1
+)
+
 
 echo Vérification des cookies...
 for /f "usebackq delims=" %%I in (`minetcookies %*`) do set OUTPUT=%%I || goto :exit_on_error

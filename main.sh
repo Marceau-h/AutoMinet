@@ -1,4 +1,6 @@
 #echo "$@"
+source venv/bin/activate || exit 1
+
 echo "Vérification des cookies..."
 OUTPUT="$(minetcookies "$@")" || exit 1
 # echo "$OUTPUT"
