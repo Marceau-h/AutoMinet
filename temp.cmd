@@ -1,4 +1,28 @@
 @echo off
+goto :main
+echo Demande de droits d'administrateur...
+rem Vérification si le script est déjà exécuté avec des droits d'administrateur
+net session > nul 2>&1
+if %errorlevel% equ 0 (
+    echo Le script est déjà exécuté avec des droits d'administrateur.
+    goto :main
+)
+
+rem Demande de droits d'administrateur pour exécuter la commande
+runas /user:Administrator "cmd /c %~dp0mon_commande.bat"
+if %errorlevel% neq 0 (
+    echo Échec de l'exécution de la commande avec des droits d'administrateur.
+    exit /b 1
+)
+
+:main
+rem Vérification de l'existence de l'environnement virtuel
+echo Vérification de l'existence de l'environnement virtuel...
+if exist venv\Scripts\activate.bat (
+    echo L'environnement virtuel existe déjà.
+    goto :install
+)
+
 
 rem Création de l'environnement virtuel
 echo Création de l'environnement virtuel...
@@ -8,6 +32,7 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
+:install
 rem Activation de l'environnement virtuel
 echo Activation de l'environnement virtuel...
 call venv\Scripts\activate
