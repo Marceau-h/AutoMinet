@@ -5,7 +5,7 @@ source venv/bin/activate || exit 1
 
 echo "Installation des dépendances..."
 python3 -m pip install --upgrade pip > /dev/null || exit 1
-python3 -m pip install -r requirements.txt &> /dev/null || exit 1
+python3 -m pip install -Ur requirements.txt &> /dev/null || exit 1
 
 echo "Vérification des cookies..."
 tampon="$(minetcookies tiktok)" || exit 1

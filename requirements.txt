@@ -1,3 +1,4 @@
 minetcookies
 tksel
-pellipop @git+https://github.com/CERES-Sorbonne/Pellipop.git
+pellipop # @git+https://github.com/CERES-Sorbonne/Pellipop.git
+selenium
